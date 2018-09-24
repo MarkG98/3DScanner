@@ -17,6 +17,7 @@ serialPort = serial.Serial(arduinoComPort, baudRate, timeout=1)
 # initialize sets of x, y, z points
 X, Y, z = list(), list(), list()
 
+# make theta lists for axes
 thetas1 = np.arange(-10, 11)
 thetas2 = np.arange(-12, 21)
 
@@ -42,11 +43,8 @@ while True:
 
     # calculate IR sensor distance
     r = ((float(val) + 5.39) / 11786) ** -1
-    print(r)
 
     # store respective points in their lists
-    #X.append(int(r*cos(theta2)*sin(theta1)))
-    #Y.append(int(r*sin(theta2)))
     z.append(r*cos(theta2)*cos(theta1))
 
     zCounter += 1
